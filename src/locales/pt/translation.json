@@ -1928,7 +1928,9 @@
         "startPositionDescription": "Onde o painel de gravação de voz aparece na tela",
         "bottomRight": "Inferior direito",
         "center": "Inferior central",
-        "bottomLeft": "Inferior esquerdo"
+        "bottomLeft": "Inferior esquerdo",
+        "compact": "Ícone compacto",
+        "compactDescription": "Manter o ícone como um círculo com halo amarelo em vez de forma de onda ao falar"
       },
       "hotkey": {
         "activationMode": "Modo de ativação",

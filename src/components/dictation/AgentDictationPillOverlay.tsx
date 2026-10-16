@@ -24,6 +24,7 @@ import { LiquidCancelButton } from "./LiquidCancelButton";
 import { LiveTranscriptPanel, type LiveTranscriptPhase } from "./LiveTranscriptPanel";
 import { VoiceModePanelCore, type VoiceModePanelStage } from "./VoiceModePanelCore";
 import { VoicePill, type VoicePillState } from "./VoicePill";
+import { useSettingsStore } from "../../stores/settingsStore";
 import "../../styles/agent-dictation-pill.css";
 
 type DictationLifecycle = "idle" | "preparing" | "recording" | "processing";
@@ -175,7 +176,11 @@ export default function AgentDictationPillOverlay() {
   // skin's geometry tween, and the pill goes headless while the skin owns the
   // fused surface.
   const [cancelSkinActive, setCancelSkinActive] = useState(false);
-  const cancelPillFootprint = expanded ? VOICE_PILL_FOOTPRINT.recording : VOICE_PILL_FOOTPRINT.idle;
+  const floatingIconCompact = useSettingsStore((s) => s.floatingIconCompact);
+  const cancelPillFootprint =
+    expanded && !(floatingIconCompact && !liveTranscript.open)
+      ? VOICE_PILL_FOOTPRINT.recording
+      : VOICE_PILL_FOOTPRINT.idle;
   // The shared rule (a mounted transcript locks the pill except while
   // recording) comes from the tested helper; the companion additionally
   // requires main-process consent and no transcript still processing.
@@ -228,7 +233,8 @@ export default function AgentDictationPillOverlay() {
           <VoicePill
             variant={liveTranscript.open ? "panel" : "floating"}
             state={state}
-            expanded={!liveTranscript.open && expanded}
+            expanded={!liveTranscript.open && !floatingIconCompact && expanded}
+            compactFloatingIcon={floatingIconCompact}
             collapseToLogo={listeningEntrance.collapseToLogo}
             waveformVisible={listeningEntrance.waveformVisible}
             waveformOnlyWhileRecording={liveTranscript.mounted}

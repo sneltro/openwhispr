@@ -1949,7 +1949,9 @@
         "startPositionDescription": "Dove appare il pannello di registrazione vocale sullo schermo",
         "bottomRight": "In basso a destra",
         "center": "In basso al centro",
-        "bottomLeft": "In basso a sinistra"
+        "bottomLeft": "In basso a sinistra",
+        "compact": "Icona compatta",
+        "compactDescription": "Mantieni l'icona come un cerchio con alone giallo anziché una forma d'onda mentre parli"
       },
       "hotkey": {
         "activationMode": "Modalità di attivazione",

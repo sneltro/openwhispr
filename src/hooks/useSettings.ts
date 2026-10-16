@@ -404,6 +404,8 @@ function useSettingsInternal() {
     setPauseMediaOnDictation: store.setPauseMediaOnDictation,
     floatingIconAutoHide: store.floatingIconAutoHide,
     setFloatingIconAutoHide: store.setFloatingIconAutoHide,
+    floatingIconCompact: store.floatingIconCompact,
+    setFloatingIconCompact: store.setFloatingIconCompact,
     startMinimized: store.startMinimized,
     setStartMinimized: store.setStartMinimized,
     panelStartPosition: store.panelStartPosition,

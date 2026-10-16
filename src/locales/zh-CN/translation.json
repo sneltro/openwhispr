@@ -1949,7 +1949,9 @@
         "startPositionDescription": "语音录制面板在屏幕上的显示位置",
         "bottomRight": "右下角",
         "center": "底部居中",
-        "bottomLeft": "左下角"
+        "bottomLeft": "左下角",
+        "compact": "紧凑图标",
+        "compactDescription": "说话时将图标保持为带黄色光晕的圆圈，而不是波形"
       },
       "hotkey": {
         "activationMode": "激活模式",

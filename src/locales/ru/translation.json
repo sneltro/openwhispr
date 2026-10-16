@@ -1953,7 +1953,9 @@
         "startPositionDescription": "Где на экране появляется панель записи голоса",
         "bottomRight": "Внизу справа",
         "center": "Внизу по центру",
-        "bottomLeft": "Внизу слева"
+        "bottomLeft": "Внизу слева",
+        "compact": "Компактный значок",
+        "compactDescription": "Оставлять значок кружком с желтым ореолом вместо волны во время речи"
       },
       "hotkey": {
         "activationMode": "Режим активации",

@@ -16,5 +16,8 @@ const LEVEL_EXPONENT = 0.75;
 const toBarLevel = (rms: number) =>
   Math.min(1, Math.pow(Math.max(0, rms) * LEVEL_GAIN, LEVEL_EXPONENT));
 
+// Tuned by ear to ignore background noise and roughly match when the standard waveform starts moving.
+export const SPEECH_PRESENCE_RMS_THRESHOLD = 0.008;
+
 export const resolveWaveformBarHeight = (rms: number) =>
   WAVEFORM_BAR_MIN_PX + toBarLevel(rms) * (WAVEFORM_BAR_MAX_PX - WAVEFORM_BAR_MIN_PX);

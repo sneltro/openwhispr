@@ -2243,7 +2243,9 @@
         "center": "Unten Mitte",
         "bottomLeft": "Unten links",
         "description": "Steuern Sie, wann das Diktat-Symbol auf Ihrem Bildschirm sichtbar ist",
-        "title": "Schwebendes Symbol"
+        "title": "Schwebendes Symbol",
+        "compact": "Kompaktes Symbol",
+        "compactDescription": "Symbol während des Sprechens als Kreis mit gelbem Halo statt Wellenform anzeigen"
       },
       "hotkey": {
         "activationMode": "Aktivierungsmodus",

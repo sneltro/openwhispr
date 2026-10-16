@@ -76,6 +76,7 @@ export default function App() {
 
   // Floating icon auto-hide setting (read from store, synced via IPC)
   const floatingIconAutoHide = useSettingsStore((s) => s.floatingIconAutoHide);
+  const floatingIconCompact = useSettingsStore((s) => s.floatingIconCompact);
   const panelStartPosition = useSettingsStore((s) => s.panelStartPosition);
   const prevAutoHideRef = useRef(floatingIconAutoHide);
   const [voiceHorizontalDirection, setVoiceHorizontalDirection] = useState(() =>
@@ -542,9 +543,10 @@ export default function App() {
   // targets, not rendered sizes: the pill transitions between footprints over
   // GROW_TRANSITION, and the skin tweens its geometry to match
   // (usePillFootprintTween in LiquidCancelButton).
-  const cancelPillFootprint = isCompactPill
-    ? VOICE_PILL_FOOTPRINT.recording
-    : VOICE_PILL_FOOTPRINT.idle;
+  const cancelPillFootprint =
+    isCompactPill && !(floatingIconCompact && !anyPanelOpen)
+      ? VOICE_PILL_FOOTPRINT.recording
+      : VOICE_PILL_FOOTPRINT.idle;
   const activateVoicePill = () => {
     if (!pillIsInteractive) return;
     if (canReopenLiveTranscript) {
@@ -677,7 +679,8 @@ export default function App() {
               ref={buttonRef}
               variant={anyPanelOpen ? "panel" : "floating"}
               state={commonPillState}
-              expanded={!anyPanelOpen && isCompactPill}
+              expanded={!anyPanelOpen && !floatingIconCompact && isCompactPill}
+              compactFloatingIcon={floatingIconCompact}
               collapseToLogo={
                 listeningEntrance.collapseToLogo || assistantFooter.collapsePillToLogo
               }

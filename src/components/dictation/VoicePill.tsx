@@ -1,9 +1,13 @@
-import { forwardRef, type HTMLAttributes } from "react";
+import { forwardRef, useEffect, useState, type HTMLAttributes } from "react";
 import { ChevronUp } from "../icons";
 import { cn } from "../lib/utils";
 import { PillWaveform } from "./PillWaveform";
 import { VoiceIdentityIcon } from "./VoiceIdentityIcon";
-import { RESTING_WAVE_SILHOUETTE, WAVEFORM_BAR_COUNT } from "./waveformMath";
+import {
+  RESTING_WAVE_SILHOUETTE,
+  SPEECH_PRESENCE_RMS_THRESHOLD,
+  WAVEFORM_BAR_COUNT,
+} from "./waveformMath";
 import {
   VOICE_PILL_FOOTPRINT,
   VOICE_PILL_GROW_TRANSITION,
@@ -27,6 +31,7 @@ interface VoicePillProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"
   showExpandChevron?: boolean;
   isDragging?: boolean;
   horizontalDirection?: "left" | "right";
+  compactFloatingIcon?: boolean;
 }
 
 // Sized from WAVEFORM_BAR_COUNT so a bar-count change can never silently
@@ -69,6 +74,7 @@ export const VoicePill = forwardRef<HTMLDivElement, VoicePillProps>(function Voi
     showExpandChevron = false,
     isDragging = false,
     horizontalDirection = "right",
+    compactFloatingIcon = false,
     className,
     style,
     ...props
@@ -79,15 +85,58 @@ export const VoicePill = forwardRef<HTMLDivElement, VoicePillProps>(function Voi
   const isProcessing = state === "processing";
   const isThinking = state === "thinking";
   const isUnavailable = state === "unavailable";
+
+  const [hasSound, setHasSound] = useState(false);
+
+  useEffect(() => {
+    if (!isRecording || !getAudioLevel || variant !== "floating" || !compactFloatingIcon) {
+      return;
+    }
+    let rafId: number | null = null;
+    let lastCheck = 0;
+    let lastSoundTime = 0;
+    let active = false;
+
+    const checkLevel = (now: number) => {
+      if (now - lastCheck >= 40) {
+        lastCheck = now;
+        const level = getAudioLevel();
+        if (level !== null && level >= SPEECH_PRESENCE_RMS_THRESHOLD) {
+          lastSoundTime = now;
+          if (!active) {
+            active = true;
+            setHasSound(true);
+          }
+        } else if (active && now - lastSoundTime >= 450) {
+          active = false;
+          setHasSound(false);
+        }
+      }
+      rafId = requestAnimationFrame(checkLevel);
+    };
+
+    rafId = requestAnimationFrame(checkLevel);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      setHasSound(false);
+    };
+  }, [isRecording, getAudioLevel, variant, compactFloatingIcon]);
+
   // One Signal glow (comet orbit over a breathing halo) serves both
   // identities; only the palette differs. It lights for the real thinking
   // state alone — glowing during the entrance or while listening would read
   // as work already in flight before any transcript exists.
+  // In compact icon mode, it lights golden yellow only when speech is detected.
   const showSignalGlow = !isUnavailable && isThinking;
   const isPanel = variant === "panel";
+  const isCompactFloating = !isPanel && compactFloatingIcon;
+  const isCompactRecording = !isUnavailable && isCompactFloating && isRecording;
+  const showActiveGlow = showSignalGlow || (isCompactRecording && hasSound);
   const collapseToIdentity = collapseToLogo || isThinking;
   const showCompactPill =
-    !collapseToIdentity && (isRecording || expanded || (isPanel && !waveformOnlyWhileRecording));
+    !isCompactFloating &&
+    !collapseToIdentity &&
+    (isRecording || expanded || (isPanel && !waveformOnlyWhileRecording));
   const showDivider = showCompactPill && waveformVisible && !isRecording;
   // The hidden divider's margins are what carry the compact pill's 6px
   // icon↔waveform gap; a visible divider keeps 4px flanking its 1px rule.
@@ -217,7 +266,8 @@ export const VoicePill = forwardRef<HTMLDivElement, VoicePillProps>(function Voi
       <span
         aria-hidden="true"
         className="processing-signal-glow"
-        data-active={showSignalGlow ? "true" : undefined}
+        data-active={showActiveGlow ? "true" : undefined}
+        data-recording={isCompactRecording ? "true" : undefined}
         data-agent={agentMode || undefined}
       >
         <span className="processing-signal-ring" />

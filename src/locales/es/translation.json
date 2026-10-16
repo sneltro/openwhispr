@@ -2001,7 +2001,9 @@
         "startPositionDescription": "Dónde aparece el panel de grabación de voz en la pantalla",
         "bottomRight": "Inferior derecha",
         "center": "Inferior centro",
-        "bottomLeft": "Inferior izquierda"
+        "bottomLeft": "Inferior izquierda",
+        "compact": "Icono compacto",
+        "compactDescription": "Mantener el icono como un círculo con halo amarillo en lugar de una onda al hablar"
       },
       "hotkey": {
         "activationMode": "Modo de activación",

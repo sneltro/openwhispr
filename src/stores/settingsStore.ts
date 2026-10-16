@@ -287,6 +287,7 @@ const BOOLEAN_SETTINGS = new Set([
   "audioCuesEnabled",
   "pauseMediaOnDictation",
   "floatingIconAutoHide",
+  "floatingIconCompact",
   "startMinimized",
   "meetingProcessDetection",
   "speakerDiarizationEnabled",
@@ -890,6 +891,7 @@ export interface SettingsState
   audioCuesEnabled: boolean;
   pauseMediaOnDictation: boolean;
   floatingIconAutoHide: boolean;
+  floatingIconCompact: boolean;
   startMinimized: boolean;
   gcalAccounts: CalendarAccount[];
   gcalConnected: boolean;
@@ -1211,6 +1213,7 @@ export interface SettingsState
   setAudioCuesEnabled: (value: boolean) => void;
   setPauseMediaOnDictation: (value: boolean) => void;
   setFloatingIconAutoHide: (enabled: boolean) => void;
+  setFloatingIconCompact: (enabled: boolean) => void;
   setStartMinimized: (enabled: boolean) => void;
   setGcalAccounts: (accounts: CalendarAccount[]) => void;
   setMcalAccounts: (accounts: MicrosoftCalendarAccount[]) => void;
@@ -1630,6 +1633,7 @@ export const useSettingsStore = create<SettingsState>()((set, get) => ({
   audioCuesEnabled: readBoolean("audioCuesEnabled", true),
   pauseMediaOnDictation: readBoolean("pauseMediaOnDictation", false),
   floatingIconAutoHide: readBoolean("floatingIconAutoHide", false),
+  floatingIconCompact: readBoolean("floatingIconCompact", false),
   startMinimized: readBoolean("startMinimized", false),
   notificationsEnabled: readBoolean("notificationsEnabled", true),
   notifyMeetingDetection: readBoolean("notifyMeetingDetection", true),
@@ -2410,6 +2414,8 @@ export const useSettingsStore = create<SettingsState>()((set, get) => ({
       window.electronAPI?.notifyFloatingIconAutoHideChanged?.(enabled);
     }
   },
+
+  setFloatingIconCompact: createBooleanSetter("floatingIconCompact"),
 
   setStartMinimized: (enabled: boolean) => {
     if (get().startMinimized === enabled) return;

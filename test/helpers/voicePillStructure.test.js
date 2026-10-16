@@ -309,3 +309,17 @@ test("the voice identity performs an actual SVG geometry morph", async () => {
   assert.equal(agent.agentOpacity, 1);
   assert.equal(agent.constructionOpacity, 0);
 });
+
+test("compact floating icon keeps circular footprint and golden yellow halo during recording", async () => {
+  const styles = readDictationStyles();
+  const footprint = await pillFootprints();
+  const compactRecording = await renderPill("recording", true, "right", {
+    compactFloatingIcon: true,
+  });
+
+  assert.match(compactRecording, footprint.idle);
+  assert.doesNotMatch(compactRecording, footprint.recording);
+  assert.match(compactRecording, /data-recording="true"/);
+  assert.match(styles, /\.processing-signal-glow\[data-recording="true"\]\s*\{/);
+  assert.match(styles, /--signal-core:\s*#eab308/);
+});

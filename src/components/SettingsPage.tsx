@@ -1224,6 +1224,8 @@ export default function SettingsPage({
     setKeepTranscriptionInClipboard,
     floatingIconAutoHide,
     setFloatingIconAutoHide,
+    floatingIconCompact,
+    setFloatingIconCompact,
     startMinimized,
     setStartMinimized,
     panelStartPosition,
@@ -3287,6 +3289,14 @@ export default function SettingsPage({
                     description={t("settingsPage.general.floatingIcon.autoHideDescription")}
                   >
                     <Toggle checked={floatingIconAutoHide} onChange={setFloatingIconAutoHide} />
+                  </SettingsRow>
+                </SettingsPanelRow>
+                <SettingsPanelRow>
+                  <SettingsRow
+                    label={t("settingsPage.general.floatingIcon.compact")}
+                    description={t("settingsPage.general.floatingIcon.compactDescription")}
+                  >
+                    <Toggle checked={floatingIconCompact} onChange={setFloatingIconCompact} />
                   </SettingsRow>
                 </SettingsPanelRow>
                 <SettingsPanelRow>
