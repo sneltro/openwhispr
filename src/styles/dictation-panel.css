@@ -329,14 +329,6 @@
   --signal-head: #f2edff;
 }
 
-/* Compact floating icon mode lights the halo golden yellow during recording. */
-.processing-signal-glow[data-recording="true"] {
-  --signal-bright: #fde047;
-  --signal-core: #eab308;
-  --signal-deep: #d97706;
-  --signal-head: #fefce8;
-}
-
 :root:not(.dark) .processing-signal-glow {
   --signal-halo-opacity: 0.7;
   --signal-comet-opacity: 0.85;

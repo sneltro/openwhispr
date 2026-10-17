@@ -2003,7 +2003,7 @@
         "center": "Inferior centro",
         "bottomLeft": "Inferior izquierda",
         "compact": "Icono compacto",
-        "compactDescription": "Mantener el icono como un círculo con halo amarillo en lugar de una onda al hablar"
+        "compactDescription": "Mantener el icono como un círculo en lugar de una onda al hablar"
       },
       "hotkey": {
         "activationMode": "Modo de activación",

@@ -1930,7 +1930,7 @@
         "center": "Inferior central",
         "bottomLeft": "Inferior esquerdo",
         "compact": "Ícone compacto",
-        "compactDescription": "Manter o ícone como um círculo com halo amarelo em vez de forma de onda ao falar"
+        "compactDescription": "Manter o ícone como um círculo em vez de forma de onda ao falar"
       },
       "hotkey": {
         "activationMode": "Modo de ativação",

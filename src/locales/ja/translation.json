@@ -1951,7 +1951,7 @@
         "center": "下中央",
         "bottomLeft": "左下",
         "compact": "コンパクトアイコン",
-        "compactDescription": "発話中に波形の代わりに黄色いハローを持つ円としてアイコンを表示する"
+        "compactDescription": "発話中に波形の代わりに円としてアイコンを表示する"
       },
       "hotkey": {
         "activationMode": "起動モード",

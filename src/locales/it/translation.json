@@ -1951,7 +1951,7 @@
         "center": "In basso al centro",
         "bottomLeft": "In basso a sinistra",
         "compact": "Icona compatta",
-        "compactDescription": "Mantieni l'icona come un cerchio con alone giallo anziché una forma d'onda mentre parli"
+        "compactDescription": "Mantieni l'icona come un cerchio anziché una forma d'onda mentre parli"
       },
       "hotkey": {
         "activationMode": "Modalità di attivazione",

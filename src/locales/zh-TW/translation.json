@@ -1951,7 +1951,7 @@
         "center": "底部置中",
         "bottomLeft": "左下角",
         "compact": "精簡圖示",
-        "compactDescription": "說話時將圖示保持為帶黃色光暈的圓圈，而不是波形"
+        "compactDescription": "說話時將圖示保持為圓圈，而不是波形"
       },
       "hotkey": {
         "activationMode": "啟用模式",

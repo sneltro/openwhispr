@@ -2245,7 +2245,7 @@
         "description": "Steuern Sie, wann das Diktat-Symbol auf Ihrem Bildschirm sichtbar ist",
         "title": "Schwebendes Symbol",
         "compact": "Kompaktes Symbol",
-        "compactDescription": "Symbol während des Sprechens als Kreis mit gelbem Halo statt Wellenform anzeigen"
+        "compactDescription": "Symbol während des Sprechens als Kreis statt Wellenform anzeigen"
       },
       "hotkey": {
         "activationMode": "Aktivierungsmodus",

@@ -2245,7 +2245,7 @@
         "description": "Contrôlez quand l'icône de dictée est visible à l'écran",
         "title": "Icône flottante",
         "compact": "Icône compacte",
-        "compactDescription": "Garder l'icône sous forme de cercle avec un halo jaune au lieu d'une onde pendant la parole"
+        "compactDescription": "Garder l'icône sous forme de cercle au lieu d'une onde pendant la parole"
       },
       "hotkey": {
         "activationMode": "Mode d'activation",

@@ -2245,7 +2245,7 @@
         "description": "Control when the dictation icon is visible on your screen",
         "title": "Floating Icon",
         "compact": "Compact icon",
-        "compactDescription": "Keep the icon as a circle with a yellow halo instead of a waveform while speaking"
+        "compactDescription": "Keep the icon as a circle instead of a waveform while speaking"
       },
       "hotkey": {
         "activationMode": "Activation Mode",
